@@ -16,8 +16,7 @@
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet" />
 </head>
-<?php holas;
-?>
+
 <body>
 
 
@@ -30,16 +29,18 @@
         <div class="card text-center">
             <div class="card-header">Importar Excel</div>
             <div class="card-body">
-                <div class="row">
-                    <form action="#" enctype="multipart/form-data">
-                    <div class="col-lg-10">
-                        <input type="file" class="form-control" id="txt-archivo" accept=".csv,.xlsx,.xls" />
+
+                <form action="#" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-8">
+                            <input type="file" class="form-control" id="txt-archivo" accept=".csv,.xlsx,.xls" />
+                        </div>
+                        <div class="col-6 col-lg-4">
+                            <a href="#" class="btn btn-danger" onclick="CargarExcel()">Cargar Excel</a>
+                        </div>
                     </div>
-                    <div class="col-lg-2">
-                        <a href="#" class="btn btn-danger" onclick="CargarExcel()">Cargar Excel</a>
-                    </div>
-                    </form>
-                </div>
+                </form>
+
             </div>
         </div>
     </div>
@@ -47,41 +48,41 @@
     <!-- End your project here-->
 
 </body>
-<script  src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-      $('input[type="file"]').on('change', function(){
-            var ext = $( this ).val().split('.').pop();
-            if ($( this ).val() != '') {
-            if(ext == "xls" || ext == "xlsx" || ext == "csv"){
-            }
-            else
-            {
-                $( this ).val('');
-                Swal.fire("Mensaje De Error","Extensión no permitida: " + ext+"","error");
-            }
-            }
-        });
-        function CargarExcel() {
-            var excel=$("#txt_archivo").val();
-            if (excel=="") {
-                return Swal.fire("Mensaje De Advertencia","Seleccionar un archivod de Excel: " + ext+"","warning");
-            }
-            var formData=new FormData();
-            var file=$("#txt_archivo")[0].file[0];
-            formData.append('archivoexcel',files);
-            $.ajax({
-                url:'importar_excel_ajax.php',
-                type:'post',
-                data:formData,
-                contentType:false,
-                processData:false,
-                success:function (resp ) {
-                    
-                }
-            });
-            
+
+$('input[type="file"]').on('change', function() {
+    var ext = $(this).val().split('.').pop();
+    if ($(this).val() != '') {
+        if (ext == "xls" || ext == "xlsx" || ext == "csv") {} else {
+            $(this).val('');
+            Swal.fire("Mensaje De Error", "Extensión no permitida: " + ext + "", "error");
+        }
+    }
+});
+
+function CargarExcel() {
+    var excel = $("#txt_archivo").val();
+    if (excel == "") {
+        return Swal.fire("Mensaje De Advertencia", "Seleccionar un archivod de Excel: " + ext + "", "warning");
+    }
+    var formData = new FormData();
+    var file = $("#txt_archivo")[0].file[0];
+    formData.append('archivoexcel', files);
+    $.ajax({
+        url: 'importar_excel_ajax.php',
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(resp) {
 
         }
+    });
+return false;
+
+}
 </script>
+
 </html>
