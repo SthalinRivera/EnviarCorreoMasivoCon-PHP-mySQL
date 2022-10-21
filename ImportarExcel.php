@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Material Design for Bootstrap</title>
+    <title>importar excel</title>
     <!-- MDB icon -->
     <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
     <!-- Font Awesome -->
@@ -21,10 +21,6 @@
 
 
     <div class="container">|
-        <div class="row">
-            <div class="col-sm-6 col-lg-8">.col-sm-6 .col-lg-8</div>
-            <div class="col-6 col-lg-4">.col-6 .col-lg-4</div>
-        </div>
         <!-- Start your project here-->
         <div class="card text-center">
             <div class="card-header">Importar Excel</div>
@@ -33,56 +29,25 @@
                 <form action="#" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-sm-6 col-lg-8">
-                            <input type="file" class="form-control" id="txt-archivo" accept=".csv,.xlsx,.xls" />
+                            <input type="file" class="form-control" id="txt_archivo" accept=".csv,.xlsx,.xls" />
                         </div>
-                        <div class="col-6 col-lg-4">
+                        <div class="col-6 col-lg-2">
                             <a href="#" class="btn btn-danger" onclick="CargarExcel()">Cargar Excel</a>
+                        </div>
+                        <div class="col-6 col-lg-2">
+                            <a href="#" class="btn btn-success" id="btn_registrar" disabled
+                                onclick="GuardarExcel()">Guardar Datos</a>
                         </div>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
+    <div class="col-lg-12" id="div_tabla">
 
+    </div>
     <!-- End your project here-->
 
 </body>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-
-$('input[type="file"]').on('change', function() {
-    var ext = $(this).val().split('.').pop();
-    if ($(this).val() != '') {
-        if (ext == "xls" || ext == "xlsx" || ext == "csv") {} else {
-            $(this).val('');
-            Swal.fire("Mensaje De Error", "Extensión no permitida: " + ext + "", "error");
-        }
-    }
-});
-
-function CargarExcel() {
-    var excel = $("#txt_archivo").val();
-    if (excel == "") {
-        return Swal.fire("Mensaje De Advertencia", "Seleccionar un archivod de Excel: " + ext + "", "warning");
-    }
-    var formData = new FormData();
-    var file = $("#txt_archivo")[0].file[0];
-    formData.append('archivoexcel', files);
-    $.ajax({
-        url: 'importar_excel_ajax.php',
-        type: 'POST',
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function(resp) {
-
-        }
-    });
-return false;
-
-}
-</script>
 
 </html>

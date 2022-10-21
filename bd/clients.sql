@@ -27,7 +27,10 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `clients`
 --
-
+ $query="INSERT INTO `clients` (`id`, `cliente`, `correo`, `notificacion`) VALUES
+        ('', '$row[1]', '$row[2]', 1)";
+        $resultEmail = mysqli_query($con, $query);
+        
 CREATE TABLE `clients` (
   `id` int(10) NOT NULL,
   `cliente` varchar(150) DEFAULT NULL,
