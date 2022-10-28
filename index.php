@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <?php 
-include 'view/header.php';
+include 'view/scrits/header.php';
 ?>
 
 <body>
@@ -125,7 +125,7 @@ include 'view/header.php';
 
     </main>
     <?php 
-include 'view/footer.php';
+include 'view/scrits/footer.php';
 ?>
 
     <script>

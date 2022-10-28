@@ -38,6 +38,9 @@ $cantidad=$spreadsheet->getActiveSheet()->toArray();
         <tbody id='tbody_tabla_detalle'>";
             foreach ($cantidad as $row) {
                 if ($row[0]!='') {  
+                  $query="INSERT INTO `clients` (`id`, `cliente`, `correo`, `notificacion`) VALUES
+                  ('', '$row[1]', '$row[2]', 1)";
+                  $resultEmail = mysqli_query($con, $query);
                     echo  "  <tr>
                         <th scope='row'>$row[0]</th>
                         <th scope='row'>$row[1]</th>

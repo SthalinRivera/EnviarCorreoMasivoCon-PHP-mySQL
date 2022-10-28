@@ -9,12 +9,12 @@
                     <a href="index.php" class="list-group-item list-group-item-action py-2 ripple active">
                         <i class="fas fa-chart-area fa-fw me-3"></i><span>Importar Excel</span>
                     </a>
-                    <a href="EnviarCorreoUsuarios.php" class="list-group-item list-group-item-action py-2 ripple"><i
-                            class="fas fa-lock fa-fw me-3"></i><span>Lista de Usuarios</span></a>
-                    <a href="mail.php" class="list-group-item list-group-item-action py-2 ripple"><i
-                            class="fas fa-chart-line fa-fw me-3"></i><span>Mails</span></a>
-                    <a href="#" class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-chart-pie fa-fw me-3"></i><span>Configuracion</span>
+                    <a href="/sistemas/EnviarCorreoMasivoCon-PHP-mySQL/EnviarCorreoUsuarios.php" class="list-group-item list-group-item-action py-2 ripple"><i
+                            class="fas fa-lock fa-fw me-3"></i><span>Enviar Correos</span></a>
+                    <a href="view/usuario/index.php" class="list-group-item list-group-item-action py-2 ripple"><i
+                            class="fas fa-chart-line fa-fw me-3"></i><span>Usurios</span></a>
+                    <a href="../../view/mail/index.php" class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fas fa-chart-pie fa-fw me-3"></i><span>mail</span>
                     </a>
 
                 </div>
