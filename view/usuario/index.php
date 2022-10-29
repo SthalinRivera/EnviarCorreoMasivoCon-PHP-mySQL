@@ -26,12 +26,11 @@
 
 <body>
 <?php include '../menu.php' ?>
-    <main style="margin-top: 58px">
+  
         <div class="container pt-4">
             <div class="card">
                 <div class="card-header py-3">
                     <h3 class="text-center mb-1 mt-1" style="font-weight: 800; font-size: 35px">
-
                         Lista
                     </h3>
                 </div>
@@ -79,7 +78,7 @@
                 </div>
             </div>
         </div>
-    </main>
+ 
     < <script>
         $(document).ready(function() {
         $('#example').DataTable({
