@@ -1,122 +1,247 @@
 <!DOCTYPE html>
 <html lang="es">
-<?php include 'view/scrits/header.php'; ?>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Enviar Correo Masivo</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+    <!-- MDB -->
+    <link rel="stylesheet" href="css/mdb.min.css" />
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="css/admin.css" />
+    <link rel="stylesheet" href="css/richtext.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
+        integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/jquery.richtext.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</head>
 
 <body>
     <?php include 'view/menu.php'; ?>
 
     <div class="container pt-4">
 
-        <div class="card text-center">
-            <div class="card-header">Seleccionar</div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-6 col-sm-4">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Seleccionar Evento</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
+
+        <!-- Tabs navs -->
+        <ul class="nav nav-tabs nav-fill mb-3" id="ex1" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="ex2-tab-1" data-mdb-toggle="tab" href="#ex2-tabs-1" role="tab"
+                    aria-controls="ex2-tabs-1" aria-selected="true">Evento</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="ex2-tab-2" data-mdb-toggle="tab" href="#ex2-tabs-2" role="tab"
+                    aria-controls="ex2-tabs-2" aria-selected="false">Correos</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="ex2-tab-3" data-mdb-toggle="tab" href="#ex2-tabs-3" role="tab"
+                    aria-controls="ex2-tabs-3" aria-selected="false">Enviar Correo</a>
+            </li>
+        </ul>
+        <!-- Tabs navs -->
+
+        <!-- Tabs content -->
+        <div class="tab-content" id="ex2-content">
+            <div class="tab-pane fade show active" id="ex2-tabs-1" role="tabpanel" aria-labelledby="ex2-tab-1">
+                <div class="card">
+                    <div class="card-body">
+                    <button type="button" class="btn btn-outline-primary" data-mdb-ripple-color="dark" data-mdb-toggle="modal"
+                            data-mdb-target="#myModal"><i class="fab fa-plus fa-lg pe-none text-primary"></i> Agregar </button>
+                        <?php
+                       include('config.php');
+                        // Realizamos la consulta para extraer los datos
+                        $resultadoEvento =("SELECT * FROM evento");
+                        $resultadoEvento=mysqli_query($con,$resultadoEvento);
+                        ?>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre evento</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php  while ($valores = mysqli_fetch_array($resultadoEvento)) {?>
+                                <tr>
+                                    <th scope="row"> <?php echo $valores['id_evento'];?></th>
+                                    <td><?php echo $valores['nombre'];?></td>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="col-6 col-sm-4">.col-6 .col-sm-4</div>
-                    <div class="col-6 col-sm-4"><button type="button" class="btn btn-outline-primary" data-mdb-ripple-color="dark">Buscar</button></div>
                 </div>
             </div>
-            <div class="card-footer text-muted">2 days ago</div>
-        </div>
-        <br>
-        <div class="card">
-            <div class="card-header py-3">
-                <p class="text-center mb-1 mt-1">
-                    Ennviar Correos (Email) de forma Masiva a múltiples usuarios
-                </p>
+            <div class="tab-pane fade" id="ex2-tabs-2" role="tabpanel" aria-labelledby="ex2-tab-2">
+                <?php
+                     
+                        // Realizamos la consulta para extraer los datos
+                        $resultadoMail =("SELECT * FROM mail");
+                        $resultadoMail=mysqli_query($con,$resultadoMail);
+                        ?>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php  while ($valores = mysqli_fetch_array($resultadoMail)) {?>
+                        <tr>
+                            <th scope="row"> <?php echo $valores['id_mail'];?></th>
+                            <td><?php echo $valores['descripcion'];?></td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
             </div>
-            <!-- Start your project here-->
-            <div class="card text-center">
-                <div class="card-body">
-                    <div class="container ">
-                        <?php
-                            include('config.php');
-                            $QueryInmuebleDetalle = ("SELECT * FROM clients WHERE correo !='' limit 50 ");
-                            $resultadoInmuebleDetalle = mysqli_query($con, $QueryInmuebleDetalle);
-                            $cantidad = mysqli_num_rows($resultadoInmuebleDetalle);
-                            ?>
-                        <form action="enviarEmail.php" method="post">
-
-                            <div class="row ">
-                                <div class="col-4">
-                                    <input type="checkbox" onclick="marcarCheckbox(this);" />
-                                    <label id="marcas">Marcar todos</label>
-                                </div>
-                                <div class="col-4">
-                                    <p id="resp"></p>
-                                </div>
-                                <div class="col-4">
-                                    <input type="submit" style="display: none;" name="enviarform" id="enviarform"
-                                        class="btn btn-round btn-primary btn-block" value="Enviar Emails">
-                                </div>
+            <div class="tab-pane fade" id="ex2-tabs-3" role="tabpanel" aria-labelledby="ex2-tab-3">
+                <!-- Tabs content -->
+                <div class="card text-center">
+                    <div class="card-header">Seleccionar</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6 col-sm-12">
+                                <select class="form-select js-example-basic-single" id="getProducts"
+                                    aria-label="Default select example" name="state">
+                                    <option disabled selected value="0">Seleccionar Evento:</option>
+                                    <?php
+                                
+                                // Realizamos la consulta para extraer los datos
+                                $resultadoEvento =("SELECT * FROM evento");
+                                $resultadoEvento=mysqli_query($con,$resultadoEvento);
+                                while ($valores = mysqli_fetch_array($resultadoEvento)) {
+                                // En esta sección estamos llenando el select con datos extraidos de una base de datos.
+                                    echo '<option value="'.$valores['id_evento'].'">'.$valores['nombre'].'</option>';
+                                }?>
+                                </select>
                             </div>
-
-                            <div class="table-responsive">
-                                <table id="example" class="table table-striped" style="width:100%">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th> #</th>
-                                            <th>Cliente</th>
-                                            <th>Email</th>
-                                            <th>Estatus de Notificación</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                            $i = 1;
-                                            while ($dataClientes = mysqli_fetch_array($resultadoInmuebleDetalle)) { ?>
-                                        <tr>
-                                            <td>
-                                                <?php echo $i; ?>
-                                                <input type="checkbox" name="correo[]" class="CheckedAK"
-                                                    correo="<?php echo $dataClientes['correo']; ?>"
-                                                    value="<?php echo $dataClientes['correo']; ?>" />
-                                            </td>
-                                            <td><?php echo $dataClientes['cliente']; ?></td>
-                                            <td><?php echo $dataClientes['correo']; ?></td>
-                                            <td>
-                                                <?php
-                                  echo ($dataClientes['notificacion']) ? '<i class="zmdi zmdi-check-all zmdi-hc-2x green"></i>' : '<i class="zmdi zmdi-check zmdi-hc-2x black"></i>';
-                                  ?>
-                                            </td>
-                                        </tr>
-                                        <?php $i++; } ?>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                        </form>
-
+                        </div>
                     </div>
+                </div>
+                <div id="display">
+                    <!-- Muestra detalle tabla para enviar correos -->
+                </div>
+            </div>
+        </div>
 
+    </div>
+
+    <!-- Fin Contenido -->
+    </div>
+    </div>
+
+    </div>
+    <!-- ===================-->
+    <!--      MODALSS       -->
+    <!-- ===================-->
+    <!-- Modal EVENTS -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nuevo evento</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <!-- Name input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" id="form5Example1" class="form-control" />
+                            <label class="form-label" for="form5Example1">Nombre</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                        Cerrar
+                    </button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
             </div>
         </div>
     </div>
+    <!-- FIN Modal EVENTS -->
+    <!-- Modal MAIL -->
+    <!-- FIN Modal MAIL -->
+    <br>
     <?php
- include 'view/scrits/footer.php';
+
 ?>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js">
+
     </script>
+
     <script>
     $(document).ready(function() {
         $('#example').DataTable();
     });
     </script>
+    <script>
+    // In your Javascript (external .js resource or <script> tag)
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });
+    </script>
+
+    <script>
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        // function to get all records from table
+        function getAll() {
+
+            $.ajax({
+                url: 'controller/getListUser.php',
+                data: 'action=showAll',
+                cache: false,
+                success: function(r) {
+                    $("#display").html(r);
+                }
+            });
+        }
+
+        getAll();
+        // function to get all records from table
+
+        // code to get all records from table via select box
+        $("#getProducts").change(function() {
+            var id = $(this).find(":selected").val();
+
+            var dataString = 'action=' + id;
+
+            $.ajax({
+                url: 'controller/getListUser.php',
+                data: dataString,
+                cache: false,
+                success: function(r) {
+                    $("#display").html(r);
+                }
+            });
+        })
+        // code to get all records from table via select box
+    });
+    </script>
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.js"></script>
 </body>
 
 </html>

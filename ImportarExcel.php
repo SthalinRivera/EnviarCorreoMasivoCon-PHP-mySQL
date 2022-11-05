@@ -18,14 +18,11 @@
 </head>
 
 <body>
-
-
     <div class="container">|
         <!-- Start your project here-->
         <div class="card text-center">
             <div class="card-header">Importar Excel</div>
             <div class="card-body">
-
                 <form action="#" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-sm-6 col-lg-8">

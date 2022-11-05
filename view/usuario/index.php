@@ -16,11 +16,14 @@
     <!-- Custom styles -->
     <link rel="stylesheet" href="../../css/admin.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/material-components-web/4.0.0/material-components-web.min.css">
-    <link href="https://cdn.datatables.net/1.12.1/css/dataTables.material.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="js/script.js"></script>
+
     <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css"></script>
+    <script src="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css"></script>
+    
+
 
 </head>
 
@@ -44,7 +47,7 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <div class="container mt-5">
-                            <table id="example" class="mdl-data-table" style="width:100%">
+                            <table id="example" class="table" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Name</th>

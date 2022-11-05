@@ -16,67 +16,44 @@ include 'view/scrits/header.php';
         <!-- Section: Main chart -->
         <!--Section: Minimal statistics cards-->
 
-        <div class="card text-center">
-            <div class="card-header">Crear Correo</div>
-            <div class="card-body">
-                <form>
-                    <!-- 2 column grid layout with text inputs for the first and last names -->
-                    <div class="row mb-4">
-                        <div class="col">
-                            <div class="form-outline">
-                                <input type="text" id="form6Example1" class="form-control" />
-                                <label class="form-label" for="form6Example1">Destinatario</label>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-outline">
-                                <input type="text" id="form6Example2" class="form-control" />
-                                <label class="form-label" for="form6Example2">CC-Destinatio</label>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Text input -->
-                    <div class="form-outline mb-4">
-                        <input type="text" id="form6Example3" class="form-control" />
-                        <label class="form-label" for="form6Example3">Asunto</label>
-                    </div>
-                    <!-- Message input -->
-                    <div class="form-outline mb-4">
-                        <textarea class="form-control" id="form6Example7" rows="4"></textarea>
-                        <label class="form-label" for="form6Example7">Descripción</label>
-                    </div>
-
-                    <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-block mb-4">Guardar</button>
-                </form>
-            </div>
-            <div class="card-footer text-muted">2 days ago</div>
-        </div>
 
         <br>
         <!-- Button trigger modal -->
+        
+
+      
+        <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary btn-floating btn-lg" data-mdb-toggle="modal"
-            data-mdb-target="#myModal">
-            <i class="fab fa-airbnb fa-lg pe-none"></i>
+            data-mdb-target="#addMail">
+            <i class="fa fa-calendar"></i>
         </button>
 
         <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="addMail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Nuevo evento</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Nuevo Mail</h5>
                         <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <form>
-                            <!-- Name input -->
-                            <div class="form-outline mb-4">
-                                <input type="text" id="form5Example1" class="form-control" />
-                                <label class="form-label" for="form5Example1">Nombre</label>
-                            </div>
-                        </form>
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <form>
+                                <!-- 2 column grid layout with text inputs for the first and last names -->
+                                <!-- Text input -->
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="form6Example3" class="form-control" />
+                                    <label class="form-label" for="form6Example3">Asunto</label>
+                                </div>
+                                <!-- Message input -->
+                                <div class="form-outline mb-4">
+                                    <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+                                    <label class="form-label" for="form6Example7">Descripción</label>
+                                </div>
+                            </form>
+                        </div>
+                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
@@ -87,8 +64,6 @@ include 'view/scrits/header.php';
                 </div>
             </div>
         </div>
-        <br>
-        
         <br>
         <div class="card">
             <div class="card-header py-3">
